@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=750">
+  	<title>Wiki Translate</title>
+	<meta name="description" content="">
+	<meta name="author" content="Pawel Szczurko">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link href="includes/normalize.css" rel="stylesheet" type="text/css">
+  </head>
+  <style>
+  .container {
+  	width: 50%;
+	margin: 0px auto 0px auto;
+	border: 1px solid black;
+	text-align: center;
+  }
+  .results {
+  	margin-top: 20px;
+  }
+  .res_heading {
+  	font-size: 25px;
+  	font-weight: bold;
+  	margin-bottom: 10px;
+  }
+  </style>
+<body>
+  <div class="container">
+  	Wiki Translate!<br><br>
+  	A simple way to translate using 
+  	<a href="http://www.wikipedia.org/" target="_blank">Wikipedia</a>.
+  	<br><br>
+  	<form name="form1" id="main" method="get" action="">
+  		 Select language:
+  		 <select name="lang">
+		  <option value="">All</option>
+		  {% for l in supp_langs %}
+		  	<option value="{{l}}" 
+		  	{% if l==lang %} selected {% endif %}>
+		  	{{l}}</option>
+		  {% endfor %}
+		</select> <br><br>
+  		<input type="text" name="query"
+  		{% if query %} value="{{query}}" {% endif%}>
+    	<input type="submit" value="Wiki Search!">
+    </form>
+    <div class="results"> 
+    	{% if results %}
+    	  <div class="res_heading">Results:</div>
+    	  {% if lang %}
+	      	{{lang}} : {{lsr}}<br>
+    	  {% else %}
+    	  	{% for l in results %}
+	      		{{l[0]}} : {{l[1]}}<br>
+	      	{% endfor %}
+    	  {% endif %}
+	    {% elif not results and query%}
+	      No results found!
+	    {% endif %}
+    </div>
+  </div>
+
+
+</body>
+</html>
