@@ -4,12 +4,21 @@ import requests as r
 from config import API_KEY
 
 def get_yandex_tran(word, lang):
+	'''
+	Fetches Yandex translation from English to specified language.
+	'''
+
 	query = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=%s&lang=en-%s&text=%s" % (API_KEY,lang,word)
 	res = r.get(query)
 	res = sj.loads(res.content)
 	return res["text"][0]
 
 def _get_title(query):
+	'''
+	Gets the Wikipedia title of an article that can then be utilized to get language pages
+	via the direct API url.
+	'''
+
 	res = w.search(query)
 	if len(res)==0:
 		return None
@@ -17,6 +26,10 @@ def _get_title(query):
 	return res[0]
 
 def _get_trans(title):
+	'''
+	Fetches Wikipedia translations based on the correct title provided.
+	'''
+
 	query = "http://en.wikipedia.org/w/api.php?action=query&format=json&titles=%s&prop=langlinks&lllimit=500&llprop=langname|url&continue=" % title
 	res = r.get(query)
 	res = sj.loads(res.content)
@@ -34,6 +47,10 @@ def _get_trans(title):
 	return trans
 
 def fetch_langs(query):
+	'''
+	Main entry point that returns languages based on the provided query.
+	'''
+	
 	title = _get_title(query)
 	t=None
 	if title:
