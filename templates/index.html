@@ -7,29 +7,64 @@
 	<meta name="description" content="">
 	<meta name="author" content="Pawel Szczurko">
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link href="includes/normalize.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='normalize.css') }}" rel="stylesheet" type="text/css">
   </head>
   <style>
+  html {
+    background-color: #FFF8DC;
+  }
   .container {
   	width: 50%;
-	margin: 0px auto 0px auto;
-	border: 1px solid black;
-	text-align: center;
+  	margin: 0px auto 0px auto;
+  	border: 1px solid black;
+  	text-align: center;
+    padding-top: 10px;
+  }
+  .footer {
+    width: 50%;
+    margin: 0px auto 0px auto;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
   }
   .results {
   	margin-top: 20px;
+    margin-bottom: 20px;
+    width:100%;
   }
   .res_heading {
   	font-size: 25px;
   	font-weight: bold;
   	margin-bottom: 10px;
   }
+  .header {
+    width: 60%;
+    font-size: 32px;
+    border: 1px solid black;
+    margin: 0px auto 0px auto;
+    text-align: center;
+    padding: 5px;
+    background-color: grey;
+    color:black;
+  }
+  a:link, a:visited, a:hover, a:active {
+    outline: 0px none;
+    color: grey;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .special {
+    font-weight: normal !important;
+    color:black !important;
+  }
   </style>
 <body>
+  <div class="header"> 
+    <a class="special" href="http://wikitranslateitfor.me">Wikipedia Translate it for Me!</a>
+  </div>
   <div class="container">
-  	Wiki Translate!<br><br>
-  	A simple way to translate using 
-  	<a href="http://www.wikipedia.org/" target="_blank">Wikipedia</a>.
+    Have you ever wanted to know the title of a movie in a different language? <br>I have, hence
+    the birth of <a href="http://www.wikipedia.org/" target="_blank">Wikipedia</a> translate!
   	<br><br>
   	<form name="form1" id="main" method="get" action="">
   		 Select language:
@@ -49,18 +84,24 @@
     	{% if results %}
     	  <div class="res_heading">Results:</div>
     	  {% if lang %}
-	      	{{lang}} : {{lsr}}<br>
+          <u>Dictionary Translation</u>: {{ yandex }}<br><br>
+          <u>Wikipedia Translation</u><br>
+	      	{{lang}} : <a href='{{ lsr["url"] }}' target="_blank">{{lsr["text"]}}</a><br>
     	  {% else %}
+          <u>Wikipedia Translation</u><br>
     	  	{% for l in results %}
-	      		{{l[0]}} : {{l[1]}}<br>
+	      		{{l["lang"]}} : <a href='{{ l["url"] }}' target="_blank">{{l["text"]}}</a><br>
 	      	{% endfor %}
     	  {% endif %}
 	    {% elif not results and query%}
 	      No results found!
 	    {% endif %}
     </div>
+    <a href="http://translate.yandex.com" target="_blank">Powered by Yandex.Translate</a>
   </div>
-
+  <div class="footer">
+  &#169; {{ year }} wikitranslateitfor.me
+  </div>
 
 </body>
 </html>
