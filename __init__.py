@@ -34,7 +34,7 @@ def main_page():
 	results=None
 	if query:
 		results = fetch_langs(query)
-	lang_specific_res = "Wikipedia can't translate :("
+	lang_specific_res = None
 	yandex_trans="Unable to translate."
 	if lang and results:
 		for l in results:
