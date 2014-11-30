@@ -2,16 +2,25 @@ import wikipedia as w
 import simplejson as sj
 import requests as r
 from config import API_KEY
+import cache
 
 def get_yandex_tran(word, lang):
 	'''
 	Fetches Yandex translation from English to specified language.
 	'''
 
+	# check if in the cache
+	res_cache = cache.fetch_cache_dict_translation(word,lang)
+	if res_cache:
+		return res_cache
+
 	query = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=%s&lang=en-%s&text=%s" % (API_KEY,lang,word)
 	res = r.get(query)
 	res = sj.loads(res.content)
-	return res["text"][0]
+	res = res["text"][0]
+	# update the cache
+	cache.insert_dict_translation(word,lang,res)
+	return res
 
 def _get_title(query):
 	'''
@@ -50,7 +59,7 @@ def fetch_langs(query):
 	'''
 	Main entry point that returns languages based on the provided query.
 	'''
-	
+
 	title = _get_title(query)
 	t=None
 	if title:
