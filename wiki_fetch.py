@@ -39,6 +39,11 @@ def _get_trans(title):
 	Fetches Wikipedia translations based on the correct title provided.
 	'''
 
+	# check if in cache
+	res_cache = cache.fetch_cache_wiki_translation(title)
+	if res_cache:
+		return res_cache
+
 	query = "http://en.wikipedia.org/w/api.php?action=query&format=json&titles=%s&prop=langlinks&lllimit=500&llprop=langname|url&continue=" % title
 	res = r.get(query)
 	res = sj.loads(res.content)
@@ -53,6 +58,8 @@ def _get_trans(title):
 		url = l["url"]
 		trans.append({"lang":language,"text":translation, "lang_code":l_code, "url":url})
 	trans.sort()
+	# update cache
+	cache.insert_wiki_translation(title,trans)
 	return trans
 
 def fetch_langs(query):
