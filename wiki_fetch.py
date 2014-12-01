@@ -4,28 +4,39 @@ import requests as r
 from config import API_KEY
 import cache
 
-def get_yandex_tran(word, lang):
+def get_yandex_tran(word, lang_code):
 	'''
 	Fetches Yandex translation from English to specified language.
+
+	Args:
+		word: word to be translated
+		lang_code: language code for translation
+	Returns:
+		Appropriate translation
 	'''
 
 	# check if in the cache
-	res_cache = cache.fetch_cache_dict_translation(word,lang)
+	res_cache = cache.fetch_cache_dict_translation(word,lang_code)
 	if res_cache:
 		return res_cache
 
-	query = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=%s&lang=en-%s&text=%s" % (API_KEY,lang,word)
+	query = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=%s&lang=en-%s&text=%s" % (API_KEY,lang_code,word)
 	res = r.get(query)
 	res = sj.loads(res.content)
 	res = res["text"][0]
 	# update the cache
-	cache.insert_dict_translation(word,lang,res)
+	cache.insert_dict_translation(word,lang_code,res)
 	return res
 
 def _get_title(query):
 	'''
 	Gets the Wikipedia title of an article that can then be utilized to get language pages
 	via the direct API url.
+
+	Args:
+		query: requested query
+	Returns:
+		Wikipedia valid title of a corresponding article if one exists
 	'''
 
 	res = w.search(query)
@@ -37,6 +48,15 @@ def _get_title(query):
 def _get_trans(title):
 	'''
 	Fetches Wikipedia translations based on the correct title provided.
+
+	Args:
+		title: Wikipedia valid title
+	Returns:
+		An alphabetically sorted list of dicts in the form:
+			lang: language
+			text: appropriate translation
+			lang_code: corresponding langauge code
+			url: corresponding wikipedia url page in the language
 	'''
 
 	# check if in cache
@@ -65,6 +85,11 @@ def _get_trans(title):
 def fetch_langs(query):
 	'''
 	Main entry point that returns languages based on the provided query.
+
+	Args:
+		query: query requested by user
+	Returns:
+		An appropriate sorted list of Wikipedia translations available.
 	'''
 
 	title = _get_title(query)

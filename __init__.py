@@ -1,7 +1,9 @@
-from flask import Flask,render_template,request
-from wiki_fetch import fetch_langs, get_yandex_tran
-from datetime import date
+import logging
 from config import SUPP_LANGS,SUPP_LANGS_CODES
+from datetime import date
+from flask import Flask,render_template,request
+from logging.handlers import RotatingFileHandler
+from wiki_fetch import fetch_langs, get_yandex_tran
 
 app=Flask(__name__)
 
@@ -33,5 +35,9 @@ def main_page():
 		supp_langs=SUPP_LANGS, yandex=yandex_trans, year=year)
 
 if __name__ == "__main__":
-	app.debug= True
+	file_handler = RotatingFileHandler('../wiki_error.log', maxBytes=1024 * 1024 * 100, backupCount=20)
+	file_handler.setLevel(logging.INFO)
+	formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+	file_handler.setFormatter(formatter)
+	app.logger.addHandler(file_handler)
 	app.run()
