@@ -9,8 +9,7 @@ on the side for other language translations. Wikipedia Translate does exactly th
 
 See it live in action at [wikitranslateitfor.me](http://wikitranslateitfor.me/)
 
-Requirements
-============
+## Requirements ##
 The app requires:
 - [MongoDB](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
 - [Flask](http://flask.pocoo.org/)
@@ -18,16 +17,14 @@ The app requires:
 - [wikipedia](https://pypi.python.org/pypi/wikipedia/) 
 - [pymongo](https://pypi.python.org/pypi/pymongo/)
 
-Remarks
-=======
+## Remarks ##
 - Yandex translation does not always translate as desired. For instance when attempting
 to translate 'white chicks' to Polish the translation will look as if it wasn't translated. This behavior
 is due to Yandex, not due to this app.
 - The translation search picks up the first article title returned by the [wikipedia](https://pypi.python.org/pypi/wikipedia/)
 search procedure. 
 
-Upcoming
-========
+## Upcoming ##
 - Allow user to see all possile results for a query and let them pick which one they meant (if more than one appeard).
 - Organize unit tests.
 - Investigate translation from any language to any langauge.
