@@ -35,7 +35,8 @@ def main_page():
 		supp_langs=SUPP_LANGS, yandex=yandex_trans, year=year)
 
 if __name__ == "__main__":
-	file_handler = RotatingFileHandler('../wiki_error.log', maxBytes=1024 * 1024 * 100, backupCount=20)
+	file_handler = RotatingFileHandler('../wiki_error.log', 
+                maxBytes=1024 * 1024 * 100, backupCount=20)
 	file_handler.setLevel(logging.INFO)
 	formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 	file_handler.setFormatter(formatter)

@@ -9,7 +9,8 @@ def fetch_cache_dict_translation(query, lang):
 
 	Args:
 		query: query that was issued for translation 
-		lang: language code for which the translation is being asked for 
+		lang: language code for which the translation is being 
+                      asked for 
 	Returns:
 		Translated text if one is found or None if not found.
 	'''
@@ -17,7 +18,8 @@ def fetch_cache_dict_translation(query, lang):
 	if trans:
 		hits = int(trans["hits"])
 		hits += 1
-		db.dict_trans.update({"_id":trans["_id"]}, {"$set": {"hits": hits}})
+		db.dict_trans.update({"_id":trans["_id"]}, 
+                        {"$set": {"hits": hits}})
 		return trans["text"]
 	else:
 		return None
@@ -29,10 +31,12 @@ def insert_dict_translation(query,lang,text):
 
 	Args:
 		query: query that was issued for translation
-		lang: language code for which the translation is being asked for
+		lang: language code for which the translation is being 
+                      asked for
 		text: translated text 
 	'''
-	db.dict_trans.insert({"query":query, "lang":lang, "text":text, "hits":1})
+	db.dict_trans.insert({"query":query, "lang":lang, 
+            "text":text, "hits":1})
 
 
 def insert_wiki_translation(title, langs):
@@ -56,7 +60,8 @@ def fetch_cache_wiki_translation(title):
 	if trans:
 		hits = int(trans["hits"])
 		hits += 1
-		db.wiki_trans.update({"_id":trans["_id"]}, {"$set": {"hits": hits}})
+		db.wiki_trans.update({"_id":trans["_id"]}, 
+                        {"$set": {"hits": hits}})
 		return trans["langs"]
 	else:
 		return None

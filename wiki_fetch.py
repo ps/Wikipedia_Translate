@@ -30,8 +30,8 @@ def get_yandex_tran(word, lang_code):
 
 def _get_title(query):
 	'''
-	Gets the Wikipedia title of an article that can then be utilized to get language pages
-	via the direct API url.
+	Gets the Wikipedia title of an article that can then be utilized to 
+        get language pages via the direct API url.
 
 	Args:
 		query: requested query
@@ -89,7 +89,8 @@ def fetch_langs(query):
 	Args:
 		query: query requested by user
 	Returns:
-		An appropriate sorted list of Wikipedia translations available.
+		An appropriate sorted list of Wikipedia translations 
+                available.
 	'''
 
 	title = _get_title(query)
