@@ -23,6 +23,7 @@ to translate 'white chicks' to Polish the translation will look as if it wasn't 
 is due to Yandex, not due to this app.
 - The translation search picks up the first article title returned by the [wikipedia](https://pypi.python.org/pypi/wikipedia/)
 search procedure. 
+- Using [Select2](http://ivaynberg.github.io/select2/) for the fancy dropdown.
 
 ## Upcoming ##
 - Allow user to see all possile results for a query and let them pick which one they meant (if more than one appeard).
