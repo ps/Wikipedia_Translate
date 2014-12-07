@@ -52,7 +52,7 @@ def insert_wiki_translation(title, langs):
 			url: corresponding wikipedia url page in the language
 
 	'''
-	db.wiki_trans.insert({"hits":0, "title":title, "langs": langs})
+	db.wiki_trans.insert({"hits":1, "title":title, "langs": langs})
 
 
 def fetch_cache_wiki_translation(title):
