@@ -1,6 +1,6 @@
 Wikipedia Translate
 ===================
-A simple Flask/MongoDB that utilizes [Wikipedia API](http://www.mediawiki.org/wiki/API:Main_page) (along with Wikipedia python library)
+A simple Flask/MongoDB web app that utilizes [Wikipedia API](http://www.mediawiki.org/wiki/API:Main_page) (along with Wikipedia python library)
 to fetch Wikipedia translations for words/phrases. A dictionary translation is given on the
 side for comparison by [Yandex.Translate](http://translate.yandex.com/). For instance, have you ever wondered how the movie 
 "[Limitless](http://en.wikipedia.org/wiki/Limitless)" is called in Polish?
