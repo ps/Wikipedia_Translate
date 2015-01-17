@@ -20,3 +20,6 @@ SUPP_LANGS = [ "Albanian", "Arabic", "Armenian", "Azerbaijani", "Belarusian",
 "Polish", "Portuguese", "Romanian", "Russian", "Serbian", "Slovak", 
 "Slovenian", "Spanish", "Swedish", "Thai", "Turkish", "Ukrainian", 
 "Vietnamese"]
+
+DB_USER = '<username-here>'
+DB_PASS = '<pass-here>'
