@@ -7,7 +7,7 @@ side for comparison by [Yandex.Translate](http://translate.yandex.com/). For ins
 If you have the only way to find out would be to search Wikipedia for the English version and look
 on the side for other language translations. Wikipedia Translate does exactly this!
 
-See it live in action at [wikitranslateitfor.me](http://wikitranslate.pawel.pw)
+See it live in action at [http://wikitranslate.pawel.pw](http://wikitranslate.pawel.pw)
 
 ## Requirements ##
 The app requires:
