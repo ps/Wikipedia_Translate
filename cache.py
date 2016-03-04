@@ -1,8 +1,8 @@
 import pymongo
-from config import DB_USER, DB_PASS
+from config import DB_USER, DB_PASS, MONGO_PORT
 from datetime import datetime
 
-CON = pymongo.Connection()
+CON = pymongo.Connection(port=MONGO_PORT)
 db = CON["wiki_translate"]
 db.authenticate(DB_USER, DB_PASS)
 

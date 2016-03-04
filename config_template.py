@@ -23,3 +23,7 @@ SUPP_LANGS = [ "Albanian", "Arabic", "Armenian", "Azerbaijani", "Belarusian",
 
 DB_USER = '<username-here>'
 DB_PASS = '<pass-here>'
+
+# this is default mongo port, but if you changed it due to security reasons
+# specify it here for proper connection
+MONGO_PORT = 27017
